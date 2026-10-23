@@ -1,6 +1,8 @@
 package com.uda.dev;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Locale;
@@ -23,7 +25,25 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.client.CameraType;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
+import net.minecraft.advancements.AdvancementHolder;
+import net.minecraft.client.MouseHandler;
+import net.minecraft.client.gui.components.toasts.RecipeToast;
+import net.minecraft.client.gui.components.toasts.SystemToast;
+import net.minecraft.client.gui.components.toasts.TutorialToast;
+import net.minecraft.client.gui.screens.GenericMessageScreen;
+import net.minecraft.client.gui.screens.LevelLoadingScreen;
+import net.minecraft.client.gui.screens.advancements.AdvancementsScreen;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
+import net.minecraft.client.gui.screens.options.OptionsScreen;
+import net.minecraft.client.gui.screens.packs.PackSelectionScreen;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.CreativeModeTab;
+import com.uda.registry.ModCreativeTabs;
+import net.neoforged.neoforge.client.event.ScreenEvent;
 import net.minecraft.client.Screenshot;
 import net.minecraft.client.gui.screens.TitleScreen;
 import net.minecraft.core.registries.Registries;
@@ -62,6 +82,7 @@ public class ScreenshotDirector {
     public ScreenshotDirector() {
         if (Boolean.getBoolean("uda.screenshots")) {
             NeoForge.EVENT_BUS.addListener(this::onClientTick);
+            NeoForge.EVENT_BUS.addListener(this::onScreenRender);
         }
     }
 
@@ -72,10 +93,15 @@ public class ScreenshotDirector {
             createWorld(mc);
             return;
         }
-        if (mc.player == null || mc.level == null || mc.isPaused()) {
+        // nas cenas da interface o relógio anda mesmo com o jogo pausado (menu de pausa, opções...)
+        if (mc.player == null || mc.level == null || mc.isPaused() && this.ticks < INTERFACE_START) {
             return;
         }
         this.ticks++;
+        if (this.ticks >= INTERFACE_START) {
+            this.interfaceScenes(mc);
+            return;
+        }
         if (this.ticks >= PROGRESSION_START) {
             this.progression(mc);
             return;
@@ -567,6 +593,195 @@ public class ScreenshotDirector {
             if (t % 40 == 0) {
                 logBosses(mc);
             }
+        }
+    }
+
+    // ================================================================ interface (gradlew runScreenshots -PcenaInicial=6000)
+
+    private static final int INTERFACE_START = 6000;
+    private static final BlockPos CHEST = new BlockPos(-1, -60, 2);
+    private static final BlockPos FURNACE = new BlockPos(0, -60, 2);
+    private static final BlockPos TABLE = new BlockPos(1, -60, 2);
+    private boolean loadingShot;
+    private int loadingFrames;
+    private int titleFrames = -1;
+    private TutorialToast tutorialToast;
+
+    /** Cada tela que o tema muda: HUD, containers, criativo, pausa, opções, pacotes, avisos, conquistas, carregamento e título. */
+    private void interfaceScenes(Minecraft mc) {
+        switch (this.ticks) {
+            case 6000 -> {
+                mc.options.hideGui = false;
+                mc.options.setCameraType(CameraType.FIRST_PERSON);
+                mc.player.getInventory().selected = 0;
+                run(mc, "gamerule sendCommandFeedback false", "gamerule doMobSpawning false", "gamerule doDaylightCycle false",
+                        "tp @e[type=!player] 0.5 -500 0.5", "kill @e[type=!player]", "time set noon", "gamemode survival", "clear @s", "effect clear @s",
+                        "fill -8 -60 -8 8 -50 8 air", "tp @s 0.5 -60 -1.5 0 25", "damage @s 7 minecraft:generic",
+                        "effect give @s minecraft:resistance infinite 4", "effect give @s minecraft:speed infinite 1", "effect give @s minecraft:night_vision infinite 0",
+                        "xp set @s 0 levels", "xp set @s 0 points", "xp add @s 27 levels", "xp add @s 50 points",
+                        "setblock -1 -60 2 chest{Items:[{Slot:0b,id:\"uda:eye_crystal\",count:9},{Slot:4b,id:\"uda:eye_core\",count:1},"
+                                + "{Slot:10b,id:\"minecraft:diamond\",count:12},{Slot:13b,id:\"uda:eye_axe\",count:1,components:{\"uda:tier\":1}},"
+                                + "{Slot:22b,id:\"minecraft:ender_pearl\",count:5}]}",
+                        "setblock 0 -60 2 furnace[facing=north,lit=true]{Items:[{Slot:0b,id:\"minecraft:raw_iron\",count:8},{Slot:1b,id:\"minecraft:coal\",count:5},"
+                                + "{Slot:2b,id:\"minecraft:iron_ingot\",count:3}],BurnTime:1200s,CookTime:0s,CookTimeTotal:200s}",
+                        "setblock 1 -60 2 crafting_table",
+                        "summon uda:black_eye 0.5 -55 -16 {NoAI:1b,PersistenceRequired:1b}",
+                        "bossbar add uda:vanilla \"Wither (barra vanilla)\"", "bossbar set uda:vanilla players @s", "bossbar set uda:vanilla value 60",
+                        "item replace entity @s hotbar.0 with uda:eye_sword[uda:tier=2,uda:awakened=true]",
+                        "item replace entity @s hotbar.1 with uda:eye_bow[uda:tier=1]",
+                        "item replace entity @s hotbar.2 with uda:eye_pickaxe",
+                        "item replace entity @s hotbar.3 with minecraft:torch 32",
+                        "item replace entity @s hotbar.4 with minecraft:bread 12",
+                        "item replace entity @s hotbar.5 with minecraft:diamond_sword",
+                        "item replace entity @s weapon.offhand with uda:eye_shield[uda:tier=1]",
+                        "item replace entity @s armor.head with uda:eye_helmet[uda:tier=1]",
+                        "item replace entity @s armor.chest with uda:eye_chestplate[uda:tier=1]",
+                        "item replace entity @s inventory.0 with uda:eye_grimoire[uda:tier=1]",
+                        "item replace entity @s inventory.1 with uda:agamoto_eye[uda:tier=2]",
+                        "item replace entity @s inventory.9 with minecraft:cobblestone 64",
+                        "item replace entity @s inventory.10 with minecraft:oak_log 23");
+            }
+            case 6035 -> mc.gui.getChat().clearMessages(false);
+            case 6040 -> shot(mc, "ui_01_hud_suprema");
+            case 6041 -> mc.player.getInventory().selected = 1;
+            case 6055 -> shot(mc, "ui_02_hud_arco_fechado");
+            case 6056 -> mc.player.getInventory().selected = 2;
+            case 6065 -> shot(mc, "ui_03_hud_picareta_selada");
+            case 6066 -> {
+                mc.player.getInventory().selected = 0;
+                mc.setScreen(new InventoryScreen(mc.player));
+            }
+            case 6070 -> hover(mc, 36); // espada na hotbar
+            case 6080 -> shot(mc, "ui_04_inventario");
+            case 6082 -> {
+                mc.player.closeContainer();
+                useOn(mc, CHEST);
+            }
+            case 6092 -> hover(mc, 13); // machado dentro do baú
+            case 6100 -> shot(mc, "ui_05_bau");
+            case 6102 -> {
+                mc.player.closeContainer();
+                useOn(mc, FURNACE);
+            }
+            case 6120 -> shot(mc, "ui_06_fornalha");
+            case 6122 -> {
+                mc.player.closeContainer();
+                useOn(mc, TABLE);
+            }
+            case 6135 -> shot(mc, "ui_07_bancada");
+            case 6137 -> {
+                mc.player.closeContainer();
+                run(mc, "gamemode creative");
+            }
+            case 6145 -> mc.setScreen(new InventoryScreen(mc.player)); // no criativo vira a tela do criativo
+            case 6160 -> shot(mc, "ui_08_criativo");
+            case 6162 -> selectCreativeTab(mc, ModCreativeTabs.MAIN.get());
+            case 6175 -> shot(mc, "ui_09_criativo_aba_do_mod");
+            case 6177 -> {
+                mc.setScreen(null);
+                run(mc, "gamemode survival");
+            }
+            case 6185 -> mc.pauseGame(false);
+            case 6200 -> shot(mc, "ui_10_pausa");
+            case 6202 -> mc.setScreen(new OptionsScreen(mc.screen, mc.options));
+            case 6215 -> shot(mc, "ui_11_opcoes");
+            case 6217 -> mc.setScreen(new PackSelectionScreen(mc.getResourcePackRepository(), repository -> {
+            }, mc.getResourcePackDirectory(), Component.translatable("resourcePack.title")));
+            case 6235 -> shot(mc, "ui_12_pacotes");
+            case 6237 -> {
+                mc.setScreen(null);
+                run(mc, "advancement grant @s only uda:progressao/root", "advancement grant @s only uda:progressao/mine_ore",
+                        "advancement grant @s only uda:progressao/crystal", "advancement grant @s only minecraft:story/mine_stone");
+                this.tutorialToast = new TutorialToast(TutorialToast.Icons.MOVEMENT_KEYS, Component.literal("Aviso de tutorial"),
+                        Component.literal("Texto escuro em fundo claro"), false);
+                mc.getToasts().addToast(this.tutorialToast);
+                SystemToast.add(mc.getToasts(), SystemToast.SystemToastId.PERIODIC_NOTIFICATION, Component.literal("Aviso do sistema"),
+                        Component.literal("O Olho te observa..."));
+                mc.level.getRecipeManager().byKey(ResourceLocation.withDefaultNamespace("crafting_table"))
+                        .ifPresent(recipe -> RecipeToast.addOrUpdate(mc.getToasts(), recipe));
+            }
+            case 6250 -> mc.gui.getChat().clearMessages(false);
+            case 6262 -> shot(mc, "ui_13_avisos");
+            case 6263 -> this.tutorialToast.hide();
+            case 6420 -> {
+                mc.setScreen(new AdvancementsScreen(mc.player.connection.getAdvancements()));
+                AdvancementHolder root = mc.player.connection.getAdvancements().get(UltimateDarkAdventure.id("progressao/root"));
+                if (root != null) {
+                    mc.player.connection.getAdvancements().setSelectedTab(root, true);
+                }
+            }
+            case 6435 -> shot(mc, "ui_14_conquistas");
+            case 6437 -> mc.setScreen(new GenericMessageScreen(Component.translatable("menu.savingLevel")));
+            case 6450 -> shot(mc, "ui_15_mensagem");
+            case 6452 -> {
+                mc.setScreen(null);
+                // barra de teste com o nome de um boss do mod na fase enfurecida (vermelha)
+                run(mc, "bossbar remove uda:vanilla",
+                        "bossbar add uda:enfurecido {\"translate\":\"boss.uda.enraged\",\"with\":[{\"translate\":\"entity.uda.abyssal_dragon\"}]}",
+                        "bossbar set uda:enfurecido color red", "bossbar set uda:enfurecido value 25", "bossbar set uda:enfurecido players @s");
+                mc.gui.getChat().clearMessages(false);
+            }
+            case 6470 -> shot(mc, "ui_16_boss_enfurecido");
+            case 6480 -> {
+                // sai para a tela de título (como o botão "Salvar e sair"); o resto acontece em onScreenRender
+                mc.level.disconnect();
+                mc.disconnect(new GenericMessageScreen(Component.translatable("menu.savingLevel")));
+                mc.setScreen(new TitleScreen());
+                this.titleFrames = 0;
+            }
+            default -> {
+            }
+        }
+    }
+
+    /** Telas que aparecem sem o mundo rodando (carregamento, título): o print sai do próprio desenho da tela. */
+    private void onScreenRender(ScreenEvent.Render.Post event) {
+        Minecraft mc = Minecraft.getInstance();
+        if (event.getScreen() instanceof LevelLoadingScreen loading && !this.loadingShot
+                && (loading.progressListener.getProgress() >= 20 || ++this.loadingFrames > 40)) {
+            this.loadingShot = true;
+            event.getGuiGraphics().flush();
+            shot(mc, "ui_00_carregando_mundo");
+        } else if (event.getScreen() instanceof TitleScreen && this.titleFrames >= 0) {
+            this.titleFrames++;
+            if (this.titleFrames == 90) {
+                event.getGuiGraphics().flush();
+                shot(mc, "ui_17_titulo");
+            } else if (this.titleFrames == 100) {
+                mc.stop();
+            }
+        }
+    }
+
+    /** Põe o cursor sobre o slot (o tooltip aparece como se o jogador tivesse passado o mouse). */
+    private static void hover(Minecraft mc, int slot) {
+        if (!(mc.screen instanceof AbstractContainerScreen<?> screen)) {
+            return;
+        }
+        Slot target = screen.getMenu().getSlot(slot);
+        double scale = mc.getWindow().getGuiScale();
+        try {
+            Field x = MouseHandler.class.getDeclaredField("xpos");
+            Field y = MouseHandler.class.getDeclaredField("ypos");
+            x.setAccessible(true);
+            y.setAccessible(true);
+            x.setDouble(mc.mouseHandler, (screen.getGuiLeft() + target.x + 8) * scale);
+            y.setDouble(mc.mouseHandler, (screen.getGuiTop() + target.y + 8) * scale);
+        } catch (ReflectiveOperationException e) {
+            UltimateDarkAdventure.LOGGER.warn(TAG + "não consegui mover o cursor", e);
+        }
+    }
+
+    private static void selectCreativeTab(Minecraft mc, CreativeModeTab tab) {
+        if (!(mc.screen instanceof CreativeModeInventoryScreen screen)) {
+            return;
+        }
+        try {
+            Method select = CreativeModeInventoryScreen.class.getDeclaredMethod("selectTab", CreativeModeTab.class);
+            select.setAccessible(true);
+            select.invoke(screen, tab);
+        } catch (ReflectiveOperationException e) {
+            UltimateDarkAdventure.LOGGER.warn(TAG + "não consegui trocar a aba do criativo", e);
         }
     }
 

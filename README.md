@@ -97,6 +97,23 @@ O Executioner e o dragão deixam mapas que levam à estrutura seguinte.
 |---|---|
 | ![Ruínas](docs/ruinas.png) | ![Santuário](docs/santuario.png) |
 
+## Interface
+
+O mod traz um pacote de recursos embutido, **Ultimate Dark Adventure** ("O Olho te observa..."), que
+deixa a interface preta e roxa: inventário e containers com o olho em cima do painel, botões, hotbar,
+corações e barra de XP roxos, tooltips, avisos, conquistas, panorama da tela de título, logo no menu de
+pausa, tela de carregamento com o Olho e barra própria para os bosses do mod. Ao lado da hotbar, um
+olho mostra o estado da arma na mão (selada, fechada, aberta ou suprema) e a recarga do poder.
+
+Ele já vem ligado na primeira vez que o jogo abre com o mod. Para desligar, é só tirar em
+Opções → Pacotes de recursos; o mod respeita a escolha depois disso.
+
+| Menu de pausa | Inventário |
+|---|---|
+| ![Pausa](docs/interface-pausa.png) | ![Inventário](docs/interface-inventario.png) |
+| **Carregando o mundo** | **HUD com a barra de boss** |
+| ![Carregamento](docs/interface-carregamento.png) | ![HUD](docs/interface-hud.png) |
+
 ## Instalação
 
 Coloque o jar na pasta `mods` do **cliente e do servidor**. Só precisa do NeoForge.
@@ -112,7 +129,7 @@ Precisa de JDK 21.
 ```
 
 O jar sai em `build/libs/`. `./gradlew runScreenshots` abre o jogo, monta as cenas de teste e tira
-os prints (`-PcenaInicial=4000` roda só a parte da progressão).
+os prints (`-PcenaInicial=4000` roda só a parte da progressão; `-PcenaInicial=6000`, só a interface).
 
 As texturas, os modelos e os dados são gerados por scripts (Node 18+ e Java 21), não editados à mão:
 
@@ -124,6 +141,7 @@ As texturas, os modelos e os dados são gerados por scripts (Node 18+ e Java 21)
 | `tools/itens/gerar_itens.mjs` | itens, blocos e armadura |
 | `tools/dados/gerar_dados.mjs` | traduções, sons, receitas, drops, estruturas e conquistas |
 | `tools/aura/GerarAtlasAura.java` | atlas de efeitos da aura |
+| `tools/interface/gerar_interface.mjs` | pacote da interface (recolore as texturas do jar do Minecraft), panorama, logo e peças do HUD |
 
 ## Créditos
 

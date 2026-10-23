@@ -108,6 +108,8 @@ const PT = {
   // mensagens
   'key.categories.uda': 'Ultimate Dark Adventure',
   'key.uda.awaken': 'Despertar a arma',
+  'uda.loading.world': 'Carregando o mundo...',
+  'uda.loading': 'Carregando...',
   'message.uda.awakened': 'O olho se abre...',
   'message.uda.dormant': 'O olho se fecha.',
   'message.uda.too_weak': 'A arma está fraca demais para despertar.',
@@ -219,6 +221,8 @@ const EN = {
   'tooltip.uda.agamoto_eye.supreme': 'Supreme: once every 5 minutes, time rewinds when you would die',
   'key.categories.uda': 'Ultimate Dark Adventure',
   'key.uda.awaken': 'Awaken weapon',
+  'uda.loading.world': 'Loading the world...',
+  'uda.loading': 'Loading...',
   'message.uda.awakened': 'The eye opens...',
   'message.uda.dormant': 'The eye closes.',
   'message.uda.too_weak': 'The weapon is too weak to awaken.',

@@ -15,6 +15,9 @@ import com.uda.client.renderer.BlackEyeRenderer;
 import com.uda.client.renderer.GlowingEyeRenderer;
 import com.uda.client.renderer.HollowWatcherRenderer;
 import com.uda.client.renderer.SummonAltarRenderer;
+import com.uda.client.ui.EyeHudLayer;
+import com.uda.client.ui.InterfaceEvents;
+import com.uda.client.ui.InterfaceTheme;
 import com.uda.entity.Awakenable;
 import com.uda.item.Ocular;
 import com.uda.item.OcularDiggerItems;
@@ -49,8 +52,10 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
+import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.network.PacketDistributor;
 
@@ -82,6 +87,11 @@ public class UltimateDarkAdventureClient {
         modEventBus.addListener(UltimateDarkAdventureClient::addLayers);
         // Detecção de minérios da Picareta Ocular (o item chama este gancho no cliente)
         OcularDiggerItems.oreScanHook = OreHighlights::scan;
+
+        // Interface temática: pacote de recursos embutido + desenhos por código
+        InterfaceTheme.register(modEventBus);
+        InterfaceEvents.register();
+        modEventBus.addListener((RegisterGuiLayersEvent event) -> event.registerAbove(VanillaGuiLayers.HOTBAR, EyeHudLayer.ID, new EyeHudLayer()));
     }
 
     private static void awakenKey(ClientTickEvent.Post event) {
