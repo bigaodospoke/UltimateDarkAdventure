@@ -1,0 +1,22 @@
+{
+  "display": {
+    "icon": {
+      "id": "uda:eye_core"
+    },
+    "title": {
+      "translate": "advancements.uda.root.title"
+    },
+    "description": {
+      "translate": "advancements.uda.root.description"
+    },
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "background": "minecraft:textures/block/polished_blackstone_bricks.png"
+  },
+  "criteria": {
+    "root": {
+      "trigger": "minecraft:tick"
+    }
+  }
+}

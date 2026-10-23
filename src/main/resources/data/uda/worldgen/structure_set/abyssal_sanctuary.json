@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "uda:abyssal_sanctuary",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 56,
+    "separation": 20,
+    "salt": 736252
+  }
+}

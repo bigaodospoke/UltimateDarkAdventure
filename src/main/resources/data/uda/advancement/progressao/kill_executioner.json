@@ -1,0 +1,27 @@
+{
+  "display": {
+    "icon": {
+      "id": "uda:eye_axe"
+    },
+    "title": {
+      "translate": "advancements.uda.kill_executioner.title"
+    },
+    "description": {
+      "translate": "advancements.uda.kill_executioner.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "kill_executioner": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "uda:blind_executioner"
+        }
+      }
+    }
+  },
+  "parent": "uda:progressao/first_awakening"
+}

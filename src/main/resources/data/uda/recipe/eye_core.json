@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    " C ",
+    "IEI",
+    " C "
+  ],
+  "key": {
+    "C": {
+      "item": "uda:eye_crystal"
+    },
+    "I": {
+      "item": "uda:eye_ingot"
+    },
+    "E": {
+      "item": "minecraft:ender_eye"
+    }
+  },
+  "result": {
+    "id": "uda:eye_core",
+    "count": 1
+  }
+}

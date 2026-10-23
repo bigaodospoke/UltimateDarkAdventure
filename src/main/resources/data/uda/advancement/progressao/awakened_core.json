@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "id": "uda:awakened_eye_core"
+    },
+    "title": {
+      "translate": "advancements.uda.awakened_core.title"
+    },
+    "description": {
+      "translate": "advancements.uda.awakened_core.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "awakened_core": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "uda:awakened_eye_core"
+          }
+        ]
+      }
+    }
+  },
+  "parent": "uda:progressao/kill_executioner"
+}

@@ -1,0 +1,27 @@
+{
+  "display": {
+    "icon": {
+      "id": "uda:eye_bow"
+    },
+    "title": {
+      "translate": "advancements.uda.kill_watcher.title"
+    },
+    "description": {
+      "translate": "advancements.uda.kill_watcher.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "kill_watcher": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "uda:hollow_watcher"
+        }
+      }
+    }
+  },
+  "parent": "uda:progressao/root"
+}

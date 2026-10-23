@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "active=false,fragments=0": {
+      "model": "uda:block/abyssal_altar_0"
+    },
+    "active=true,fragments=0": {
+      "model": "uda:block/abyssal_altar_0"
+    },
+    "active=false,fragments=1": {
+      "model": "uda:block/abyssal_altar_1"
+    },
+    "active=true,fragments=1": {
+      "model": "uda:block/abyssal_altar_1"
+    },
+    "active=false,fragments=2": {
+      "model": "uda:block/abyssal_altar_2"
+    },
+    "active=true,fragments=2": {
+      "model": "uda:block/abyssal_altar_2"
+    },
+    "active=false,fragments=3": {
+      "model": "uda:block/abyssal_altar_3"
+    },
+    "active=true,fragments=3": {
+      "model": "uda:block/abyssal_altar_3"
+    },
+    "active=false,fragments=4": {
+      "model": "uda:block/abyssal_altar_4"
+    },
+    "active=true,fragments=4": {
+      "model": "uda:block/abyssal_altar_4"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "display": {
+    "icon": {
+      "id": "uda:abyssal_altar"
+    },
+    "title": {
+      "translate": "advancements.uda.summon_dragon.title"
+    },
+    "description": {
+      "translate": "advancements.uda.summon_dragon.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "summon_dragon": {
+      "trigger": "minecraft:summoned_entity",
+      "conditions": {
+        "entity": {
+          "type": "uda:abyssal_dragon"
+        }
+      }
+    }
+  },
+  "parent": "uda:progressao/awakened_core"
+}

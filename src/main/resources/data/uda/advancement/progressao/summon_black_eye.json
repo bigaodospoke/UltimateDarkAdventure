@@ -1,0 +1,27 @@
+{
+  "display": {
+    "icon": {
+      "id": "uda:void_altar"
+    },
+    "title": {
+      "translate": "advancements.uda.summon_black_eye.title"
+    },
+    "description": {
+      "translate": "advancements.uda.summon_black_eye.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "summon_black_eye": {
+      "trigger": "minecraft:summoned_entity",
+      "conditions": {
+        "entity": {
+          "type": "uda:black_eye"
+        }
+      }
+    }
+  },
+  "parent": "uda:progressao/heart"
+}

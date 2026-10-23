@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "id": "uda:eye_altar"
+    },
+    "title": {
+      "translate": "advancements.uda.altar.title"
+    },
+    "description": {
+      "translate": "advancements.uda.altar.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "altar": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "uda:eye_altar"
+          }
+        ]
+      }
+    }
+  },
+  "parent": "uda:progressao/watcher_eye"
+}

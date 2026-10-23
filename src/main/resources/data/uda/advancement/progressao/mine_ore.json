@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "id": "uda:raw_eye_fragment"
+    },
+    "title": {
+      "translate": "advancements.uda.mine_ore.title"
+    },
+    "description": {
+      "translate": "advancements.uda.mine_ore.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "mine_ore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "uda:raw_eye_fragment"
+          }
+        ]
+      }
+    }
+  },
+  "parent": "uda:progressao/root"
+}

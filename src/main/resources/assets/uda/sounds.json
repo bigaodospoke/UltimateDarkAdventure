@@ -1,0 +1,222 @@
+{
+  "eye.open": {
+    "subtitle": "subtitles.uda.eye.open",
+    "sounds": [
+      {
+        "name": "minecraft:block/trial_spawner/ominous_activate",
+        "pitch": 1.3,
+        "volume": 1
+      }
+    ]
+  },
+  "altar.place": {
+    "subtitle": "subtitles.uda.altar.place",
+    "sounds": [
+      {
+        "name": "minecraft:block/amethyst/resonate1",
+        "pitch": 0.8,
+        "volume": 1
+      },
+      {
+        "name": "minecraft:block/amethyst/resonate2",
+        "pitch": 0.8,
+        "volume": 1
+      },
+      {
+        "name": "minecraft:block/amethyst/resonate3",
+        "pitch": 0.8,
+        "volume": 1
+      },
+      {
+        "name": "minecraft:block/amethyst/resonate4",
+        "pitch": 0.8,
+        "volume": 1
+      }
+    ]
+  },
+  "altar.ritual": {
+    "subtitle": "subtitles.uda.altar.ritual",
+    "sounds": [
+      {
+        "name": "minecraft:block/beacon/activate",
+        "pitch": 0.6,
+        "volume": 1
+      }
+    ]
+  },
+  "altar.heartbeat": {
+    "subtitle": "subtitles.uda.altar.heartbeat",
+    "sounds": [
+      {
+        "name": "minecraft:mob/warden/heartbeat_1",
+        "pitch": 1,
+        "volume": 1
+      },
+      {
+        "name": "minecraft:mob/warden/heartbeat_2",
+        "pitch": 1,
+        "volume": 1
+      },
+      {
+        "name": "minecraft:mob/warden/heartbeat_3",
+        "pitch": 1,
+        "volume": 1
+      },
+      {
+        "name": "minecraft:mob/warden/heartbeat_4",
+        "pitch": 1,
+        "volume": 1
+      }
+    ]
+  },
+  "altar.awaken": {
+    "subtitle": "subtitles.uda.altar.awaken",
+    "sounds": [
+      {
+        "name": "minecraft:mob/warden/sonic_boom1",
+        "pitch": 1.2,
+        "volume": 0.7
+      },
+      {
+        "name": "minecraft:mob/warden/sonic_boom2",
+        "pitch": 1.2,
+        "volume": 0.7
+      },
+      {
+        "name": "minecraft:mob/warden/sonic_boom3",
+        "pitch": 1.2,
+        "volume": 0.7
+      },
+      {
+        "name": "minecraft:mob/warden/sonic_boom4",
+        "pitch": 1.2,
+        "volume": 0.7
+      }
+    ]
+  },
+  "summon.start": {
+    "subtitle": "subtitles.uda.summon.start",
+    "sounds": [
+      {
+        "name": "minecraft:portal/trigger",
+        "pitch": 0.6,
+        "volume": 1
+      }
+    ]
+  },
+  "summon.complete": {
+    "subtitle": "subtitles.uda.summon.complete",
+    "sounds": [
+      {
+        "name": "minecraft:item/trident/thunder1",
+        "pitch": 0.8,
+        "volume": 1
+      },
+      {
+        "name": "minecraft:item/trident/thunder2",
+        "pitch": 0.8,
+        "volume": 1
+      }
+    ]
+  },
+  "boss.enrage": {
+    "subtitle": "subtitles.uda.boss.enrage",
+    "sounds": [
+      {
+        "name": "minecraft:mob/warden/sonic_charge1",
+        "pitch": 0.7,
+        "volume": 1
+      },
+      {
+        "name": "minecraft:mob/warden/sonic_charge2",
+        "pitch": 0.7,
+        "volume": 1
+      },
+      {
+        "name": "minecraft:mob/warden/sonic_charge3",
+        "pitch": 0.7,
+        "volume": 1
+      },
+      {
+        "name": "minecraft:mob/warden/sonic_charge4",
+        "pitch": 0.7,
+        "volume": 1
+      }
+    ]
+  },
+  "weapon.slash": {
+    "subtitle": "subtitles.uda.weapon.slash",
+    "sounds": [
+      {
+        "name": "minecraft:mob/breeze/wind_burst1",
+        "pitch": 1.4,
+        "volume": 0.8
+      },
+      {
+        "name": "minecraft:mob/breeze/wind_burst2",
+        "pitch": 1.4,
+        "volume": 0.8
+      },
+      {
+        "name": "minecraft:mob/breeze/wind_burst3",
+        "pitch": 1.4,
+        "volume": 0.8
+      }
+    ]
+  },
+  "weapon.scan": {
+    "subtitle": "subtitles.uda.weapon.scan",
+    "sounds": [
+      {
+        "name": "minecraft:block/conduit/activate",
+        "pitch": 1.5,
+        "volume": 1
+      }
+    ]
+  },
+  "weapon.barrier": {
+    "subtitle": "subtitles.uda.weapon.barrier",
+    "sounds": [
+      {
+        "name": "minecraft:enchant/thorns/hit1",
+        "pitch": 1.6,
+        "volume": 1
+      },
+      {
+        "name": "minecraft:enchant/thorns/hit2",
+        "pitch": 1.6,
+        "volume": 1
+      },
+      {
+        "name": "minecraft:enchant/thorns/hit3",
+        "pitch": 1.6,
+        "volume": 1
+      },
+      {
+        "name": "minecraft:enchant/thorns/hit4",
+        "pitch": 1.6,
+        "volume": 1
+      }
+    ]
+  },
+  "agamoto.freeze": {
+    "subtitle": "subtitles.uda.agamoto.freeze",
+    "sounds": [
+      {
+        "name": "minecraft:block/beacon/deactivate",
+        "pitch": 0.5,
+        "volume": 1
+      }
+    ]
+  },
+  "agamoto.rewind": {
+    "subtitle": "subtitles.uda.agamoto.rewind",
+    "sounds": [
+      {
+        "name": "minecraft:item/totem/use_totem",
+        "pitch": 0.6,
+        "volume": 1
+      }
+    ]
+  }
+}

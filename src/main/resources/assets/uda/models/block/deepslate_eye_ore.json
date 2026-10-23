@@ -1,0 +1,92 @@
+{
+  "parent": "minecraft:block/block",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "particle": "minecraft:block/deepslate",
+    "base": "minecraft:block/deepslate",
+    "eyes": "uda:block/eye_ore_eyes"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "faces": {
+        "north": {
+          "texture": "#base",
+          "cullface": "north"
+        },
+        "south": {
+          "texture": "#base",
+          "cullface": "south"
+        },
+        "east": {
+          "texture": "#base",
+          "cullface": "east"
+        },
+        "west": {
+          "texture": "#base",
+          "cullface": "west"
+        },
+        "up": {
+          "texture": "#base",
+          "cullface": "up"
+        },
+        "down": {
+          "texture": "#base",
+          "cullface": "down"
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "shade": false,
+      "neoforge_data": {
+        "block_light": 15,
+        "sky_light": 15
+      },
+      "faces": {
+        "north": {
+          "texture": "#eyes",
+          "cullface": "north"
+        },
+        "south": {
+          "texture": "#eyes",
+          "cullface": "south"
+        },
+        "east": {
+          "texture": "#eyes",
+          "cullface": "east"
+        },
+        "west": {
+          "texture": "#eyes",
+          "cullface": "west"
+        },
+        "up": {
+          "texture": "#eyes",
+          "cullface": "up"
+        },
+        "down": {
+          "texture": "#eyes",
+          "cullface": "down"
+        }
+      }
+    }
+  ]
+}

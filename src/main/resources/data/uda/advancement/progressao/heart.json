@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "id": "uda:abyssal_heart"
+    },
+    "title": {
+      "translate": "advancements.uda.heart.title"
+    },
+    "description": {
+      "translate": "advancements.uda.heart.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "heart": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "uda:abyssal_heart"
+          }
+        ]
+      }
+    }
+  },
+  "parent": "uda:progressao/kill_dragon"
+}

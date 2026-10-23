@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "active=false": {
+      "model": "uda:block/eye_altar"
+    },
+    "active=true": {
+      "model": "uda:block/eye_altar_active"
+    }
+  }
+}

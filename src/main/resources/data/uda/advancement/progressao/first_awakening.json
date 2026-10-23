@@ -1,0 +1,32 @@
+{
+  "display": {
+    "icon": {
+      "id": "uda:eye_sword"
+    },
+    "title": {
+      "translate": "advancements.uda.first_awakening.title"
+    },
+    "description": {
+      "translate": "advancements.uda.first_awakening.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "first_awakening": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "#uda:ocular_equipment",
+            "components": {
+              "uda:tier": 1
+            }
+          }
+        ]
+      }
+    }
+  },
+  "parent": "uda:progressao/altar"
+}

@@ -1,0 +1,32 @@
+{
+  "display": {
+    "icon": {
+      "id": "uda:awakened_eye_core"
+    },
+    "title": {
+      "translate": "advancements.uda.supreme.title"
+    },
+    "description": {
+      "translate": "advancements.uda.supreme.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "supreme": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "#uda:ocular_equipment",
+            "components": {
+              "uda:tier": 2
+            }
+          }
+        ]
+      }
+    }
+  },
+  "parent": "uda:progressao/kill_black_eye"
+}

@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    "uda:eye_sword",
+    "uda:eye_axe",
+    "uda:eye_pickaxe",
+    "uda:eye_shovel",
+    "uda:eye_bow",
+    "uda:eye_shield",
+    "uda:eye_grimoire",
+    "uda:eye_helmet",
+    "uda:eye_chestplate",
+    "uda:eye_leggings",
+    "uda:eye_boots",
+    "uda:agamoto_eye"
+  ]
+}

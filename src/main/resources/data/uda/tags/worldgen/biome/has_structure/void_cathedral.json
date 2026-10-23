@@ -1,0 +1,11 @@
+{
+  "values": [
+    "minecraft:dark_forest",
+    "#minecraft:is_taiga",
+    "minecraft:snowy_plains",
+    "minecraft:plains",
+    "minecraft:forest",
+    "minecraft:birch_forest",
+    "minecraft:meadow"
+  ]
+}

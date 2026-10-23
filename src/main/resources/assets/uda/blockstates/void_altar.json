@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "active=false": {
+      "model": "uda:block/void_altar"
+    },
+    "active=true": {
+      "model": "uda:block/void_altar_active"
+    }
+  }
+}

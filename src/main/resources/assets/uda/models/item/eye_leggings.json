@@ -1,0 +1,20 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "uda:item/eye_leggings"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "uda:tier": 1
+      },
+      "model": "uda:item/eye_leggings_awakened"
+    },
+    {
+      "predicate": {
+        "uda:tier": 2
+      },
+      "model": "uda:item/eye_leggings_supreme"
+    }
+  ]
+}
