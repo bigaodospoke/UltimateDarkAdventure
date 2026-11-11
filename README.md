@@ -148,3 +148,7 @@ As texturas, os modelos e os dados são gerados por scripts (Node 18+ e Java 21)
 - O motor da aura é adaptado do mod **Auras**, do mesmo autor.
 - Os sons são arquivos do próprio Minecraft, combinados e reafinados.
 - Projeto de fã, sem vínculo com a Mojang ou a Microsoft.
+
+## Licença / License
+
+Copyright (c) 2026 Kauã Batista do Nascimento ([bigaodospoke](https://github.com/bigaodospoke)). **Todos os direitos reservados / All rights reserved.** Veja o arquivo [LICENSE](LICENSE).
